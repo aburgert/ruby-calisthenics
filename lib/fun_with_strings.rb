@@ -24,10 +24,36 @@ module FunWithStrings
       return ht
   end
   def anagram_groups
-    # your code here
+    #hash tables of letter counts in each word
+    #sort hash tables
+    #if equal add to an array
+    #return arrays arrayed
+    ht = Hash.new(0)
+    arr = self.downcase.gsub(/[^a-z ]/, '').split(' ')
+    arr.each do |w|
+      ht[w] += 1
+    end
+    ht.each do |word, count|
+      wht[word] = Hash.new(0)
+      self.each_char do |letter|
+        ht[word][letter] += 0
+      end
+    end
   end
 end
 
+a = Hash.new
+a["a"] = 2
+a["b"] = 3
+b = Hash.new
+b["b"] = 3
+b["a"] = 2
+a.each do |l, c|
+  puts "#{l}:\t#{c}"
+end
+b.each do |l, c|
+  puts "#{l}:\t#{c}"
+end
 # make all the above functions available as instance methods on Strings:
 
 class String
