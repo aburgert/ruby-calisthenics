@@ -54,6 +54,11 @@ end
 b.each do |l, c|
   puts "#{l}:\t#{c}"
 end
+puts a.to_a.inspect
+puts b.to_a.inspect
+puts "#{b.inspect} # before sort"
+b.sort_by { |l,c| l.to_s }
+puts "#{b.inspect} # after sort"
 # make all the above functions available as instance methods on Strings:
 
 class String
