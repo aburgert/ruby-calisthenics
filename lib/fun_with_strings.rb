@@ -28,39 +28,62 @@ module FunWithStrings
     #sort hash tables
     #if equal add to an array
     #return arrays arrayed
-    ht = Hash.new(0)
-    arr = self.downcase.gsub(/[^a-z ]/, '').split(' ')
-    arr.each do |w|
-      ht[w] += 1
-    end
-    ht.each do |word, count|
-      wht[word] = Hash.new(0)
+=begin
+    result = Array.new # adding to this
+    ht = self.count_words #reusing code for the win!
+    ht.each do |word, count| #letter count per word in nested hash tables; we don't need the count but it's easier
+      ht[word] = Hash.new(0)
       self.each_char do |letter|
-        ht[word][letter] += 0
+        ht[word][letter] += 1
       end
     end
+    #ht.map { |key, val| val.map { |ikey, ival| } }
+=end
+    return self.gsub(/^a-zA-Z /, '').split(' ').group_by { |x| x.downcase.chars.sort }.values
   end
 end
 
+#puts "the teh one oen test tested".anagram_groups
+
+=begin
+ht = {
+  "word1" => {
+    "L" => 1,
+    "M" => 2,
+  }
+  "word2" => {
+    "N" => 3
+    "O" => 4
+  }
+}
+result = Array.new
+ht.each do { |word, letter| }
+  letter = letter.to_a #hash table of nested arrays
+  letter.sort_by { |letr, count| letr } #arrays under both key "a" and key "b" should be equal
+  for i=0 to ht.length-1 do
+    for j=i+1 to ht.length do
+      if i[1] == j[1] {
+        result <<
+      }
+#=end
+
+htest = Hash.new
 a = Hash.new
 a["a"] = 2
 a["b"] = 3
 b = Hash.new
 b["b"] = 3
 b["a"] = 2
-a.each do |l, c|
-  puts "#{l}:\t#{c}"
-end
-b.each do |l, c|
-  puts "#{l}:\t#{c}"
-end
-puts a.to_a.inspect
-puts b.to_a.inspect
-puts "#{b.inspect} # before sort"
-b.sort_by { |l,c| l.to_s }
-puts "#{b.inspect} # after sort"
+htest["a"] = a
+htest["b"] = b
+htest["a"] = htest["a"].to_a
+htest["a"].sort
+#htest +=
 # make all the above functions available as instance methods on Strings:
+=end
 
 class String
   include FunWithStrings
 end
+
+puts "the teh one oen test tested".anagram_groups
